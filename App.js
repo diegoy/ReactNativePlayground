@@ -1,16 +1,38 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 
+class Blink extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isShowingText: true };
+
+    //Toggle the state every second
+    setInterval(()=> {
+      this.setState(previousState => {
+        return { isShowingText: !previousState.isShowingText };
+      });
+    }, 1000);
+  }
+
+  render() {
+    let display = this.state.isShowingText ? this.props.text : '';
+    return (
+      <Text>{display}</Text>
+    );
+  }
+}
+
 class ImageText extends Component {
   render() {
     return (
       <View>
-        <Text>{this.props.text}</Text>
+        <Blink text={this.props.text}></Blink>
         <Image source={this.props.pic} style={{width: 193, height: 110}}/>
       </View>
     );
   }
 }
+
 
 export default class App extends React.Component {
   render() {
@@ -20,7 +42,7 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <ImageText text='This shit is bananas' pic={pic}/>
-        <ImageText text='This shit is bananas' pic={pic}/>
+        <Blink text='I love to blink'/>
       </View>
     );
   }
