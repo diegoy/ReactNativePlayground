@@ -17,7 +17,7 @@ class Blink extends Component {
   render() {
     let display = this.state.isShowingText ? this.props.text : '';
     return (
-      <Text>{display}</Text>
+      <Text style={this.props.style}>{display}</Text>
     );
   }
 }
@@ -39,10 +39,13 @@ export default class App extends React.Component {
     let pic = {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     };
+    let pic2 = {
+      uri: 'https://images-gmi-pmc.edge-generalmills.com/173da066-c6b4-45dd-9b28-0d459cf6f169.jpg'
+    }
     return (
       <View style={styles.container}>
         <ImageText text='This shit is bananas' pic={pic}/>
-        <Blink text='I love to blink'/>
+        <ImageText text='Apple pie' pic={pic2}/>
       </View>
     );
   }
@@ -51,8 +54,12 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: 'column',
     backgroundColor: '#ccc',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center'
   },
+  textColor: {
+    color: '#f55'
+  }
 });
